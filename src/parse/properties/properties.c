@@ -156,5 +156,15 @@ const css_prop_handler property_handlers[LAST_PROP + 1 - FIRST_PROP] =
 	css__parse_width,
 	css__parse_word_spacing,
 	css__parse_writing_mode,
-	css__parse_z_index
+	css__parse_z_index,
+	css__parse_depth,
+	css__parse_max_depth,
+	css__parse_min_depth,
+	css__parse_far,
+	css__parse_near,
+	css__parse_margin_far,
+	css__parse_margin_near,
+	css__parse_padding_far,
+	css__parse_padding_near,
+	css__parse_overflow_z
 };

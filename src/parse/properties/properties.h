@@ -457,5 +457,35 @@ css_error css__parse_writing_mode(css_language *c,
 css_error css__parse_z_index(css_language *c,
 		const parserutils_vector *vector, int *ctx,
 		css_style *result);
+css_error css__parse_depth(css_language *c,
+		const parserutils_vector *vector, int *ctx,
+		css_style *result);
+css_error css__parse_max_depth(css_language *c,
+		const parserutils_vector *vector, int *ctx,
+		css_style *result);
+css_error css__parse_min_depth(css_language *c,
+		const parserutils_vector *vector, int *ctx,
+		css_style *result);
+css_error css__parse_far(css_language *c,
+		const parserutils_vector *vector, int *ctx,
+		css_style *result);
+css_error css__parse_near(css_language *c,
+		const parserutils_vector *vector, int *ctx,
+		css_style *result);
+css_error css__parse_margin_far(css_language *c,
+		const parserutils_vector *vector, int *ctx,
+		css_style *result);
+css_error css__parse_margin_near(css_language *c,
+		const parserutils_vector *vector, int *ctx,
+		css_style *result);
+css_error css__parse_padding_far(css_language *c,
+		const parserutils_vector *vector, int *ctx,
+		css_style *result);
+css_error css__parse_padding_near(css_language *c,
+		const parserutils_vector *vector, int *ctx,
+		css_style *result);
+css_error css__parse_overflow_z(css_language *c,
+		const parserutils_vector *vector, int *ctx,
+		css_style *result);
 
 #endif

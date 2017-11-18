@@ -34,9 +34,9 @@ css_error css__parse_margin(css_language *c,
 	int orig_ctx = *ctx;
 	int prev_ctx;
 	const css_token *token;
-	uint16_t side_val[4];
-	css_fixed side_length[4];
-	uint32_t side_unit[4];
+	uint16_t side_val[6];
+	css_fixed side_length[6];
+	uint32_t side_unit[6];
 	uint32_t side_count = 0;
 	bool match;
 	css_error error;
@@ -64,9 +64,21 @@ css_error css__parse_margin(css_language *c,
 			parserutils_vector_iterate(vector, ctx);
 
 		return error;
+
+		error = css_stylesheet_style_inherit(result, CSS_PROP_MARGIN_FAR);
+		if (error == CSS_OK)
+			parserutils_vector_iterate(vector, ctx);
+
+		return error;
+
+		error = css_stylesheet_style_inherit(result, CSS_PROP_MARGIN_NEAR);
+		if (error == CSS_OK)
+			parserutils_vector_iterate(vector, ctx);
+
+		return error;
 	}
 
-	/* Attempt to parse up to 4 widths */
+	/* Attempt to parse up to 6 widths */
 	do {
 		prev_ctx = *ctx;
 
@@ -103,7 +115,7 @@ css_error css__parse_margin(css_language *c,
 			/* Forcibly cause loop to exit */
 			token = NULL;
 		}
-	} while ((*ctx != prev_ctx) && (token != NULL) && (side_count < 4));
+	} while ((*ctx != prev_ctx) && (token != NULL) && (side_count < 6));
 
 
 #define SIDE_APPEND(OP,NUM)								\
@@ -119,30 +131,66 @@ css_error css__parse_margin(css_language *c,
 			break;								\
 	}
 
+#define SIDE_ZERO(OP)							\
+	error = css__stylesheet_style_appendOPV(result, (OP), 0,	\
+			MARGIN_SET);					\
+	if (error != CSS_OK)						\
+		break;							\
+	error = css__stylesheet_style_append(result, 0);		\
+	if (error != CSS_OK)						\
+		break;							\
+	error = css__stylesheet_style_append(result, UNIT_PX);		\
+	if (error != CSS_OK)						\
+		break;							\
+
 	switch (side_count) {
 	case 1:
 		SIDE_APPEND(CSS_PROP_MARGIN_TOP, 0);
 		SIDE_APPEND(CSS_PROP_MARGIN_RIGHT, 0);
 		SIDE_APPEND(CSS_PROP_MARGIN_BOTTOM, 0);
 		SIDE_APPEND(CSS_PROP_MARGIN_LEFT, 0);
+		SIDE_ZERO(CSS_PROP_MARGIN_FAR);
+		SIDE_ZERO(CSS_PROP_MARGIN_NEAR);
 		break;
 	case 2:
 		SIDE_APPEND(CSS_PROP_MARGIN_TOP, 0);
 		SIDE_APPEND(CSS_PROP_MARGIN_RIGHT, 1);
 		SIDE_APPEND(CSS_PROP_MARGIN_BOTTOM, 0);
 		SIDE_APPEND(CSS_PROP_MARGIN_LEFT, 1);
+		SIDE_ZERO(CSS_PROP_MARGIN_FAR);
+		SIDE_ZERO(CSS_PROP_MARGIN_NEAR);
 		break;
 	case 3:
 		SIDE_APPEND(CSS_PROP_MARGIN_TOP, 0);
 		SIDE_APPEND(CSS_PROP_MARGIN_RIGHT, 1);
 		SIDE_APPEND(CSS_PROP_MARGIN_BOTTOM, 2);
 		SIDE_APPEND(CSS_PROP_MARGIN_LEFT, 1);
+		SIDE_ZERO(CSS_PROP_MARGIN_FAR);
+		SIDE_ZERO(CSS_PROP_MARGIN_NEAR);
 		break;
 	case 4:
 		SIDE_APPEND(CSS_PROP_MARGIN_TOP, 0);
 		SIDE_APPEND(CSS_PROP_MARGIN_RIGHT, 1);
 		SIDE_APPEND(CSS_PROP_MARGIN_BOTTOM, 2);
 		SIDE_APPEND(CSS_PROP_MARGIN_LEFT, 3);
+		SIDE_ZERO(CSS_PROP_MARGIN_FAR);
+		SIDE_ZERO(CSS_PROP_MARGIN_NEAR);
+		break;
+	case 5:
+		SIDE_APPEND(CSS_PROP_MARGIN_TOP, 0);
+		SIDE_APPEND(CSS_PROP_MARGIN_RIGHT, 1);
+		SIDE_APPEND(CSS_PROP_MARGIN_BOTTOM, 2);
+		SIDE_APPEND(CSS_PROP_MARGIN_LEFT, 3);
+		SIDE_APPEND(CSS_PROP_MARGIN_FAR, 4);
+		SIDE_APPEND(CSS_PROP_MARGIN_NEAR, 4);
+		break;
+	case 6:
+		SIDE_APPEND(CSS_PROP_MARGIN_TOP, 0);
+		SIDE_APPEND(CSS_PROP_MARGIN_RIGHT, 1);
+		SIDE_APPEND(CSS_PROP_MARGIN_BOTTOM, 2);
+		SIDE_APPEND(CSS_PROP_MARGIN_LEFT, 3);
+		SIDE_APPEND(CSS_PROP_MARGIN_FAR, 4);
+		SIDE_APPEND(CSS_PROP_MARGIN_NEAR, 5);
 		break;
 	default:
 		error = CSS_INVALID;

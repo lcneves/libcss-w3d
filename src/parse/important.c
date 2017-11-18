@@ -156,20 +156,26 @@ void css__make_style_important(css_style *style)
 			case CSS_PROP_MARGIN_RIGHT:
 			case CSS_PROP_MARGIN_BOTTOM:
 			case CSS_PROP_MARGIN_LEFT:
+			case CSS_PROP_MARGIN_FAR:
+			case CSS_PROP_MARGIN_NEAR:
 			case CSS_PROP_BOTTOM:
 			case CSS_PROP_LEFT:
 			case CSS_PROP_RIGHT:
 			case CSS_PROP_TOP:
 			case CSS_PROP_HEIGHT:
 			case CSS_PROP_WIDTH:
+			case CSS_PROP_DEPTH:
 			case CSS_PROP_COLUMN_WIDTH:
 			case CSS_PROP_COLUMN_GAP:
 				assert(BOTTOM_SET == (enum op_bottom)LEFT_SET);
 				assert(BOTTOM_SET == (enum op_bottom)RIGHT_SET);
 				assert(BOTTOM_SET == (enum op_bottom)TOP_SET);
+				assert(BOTTOM_SET == (enum op_bottom)FAR_SET);
+				assert(BOTTOM_SET == (enum op_bottom)NEAR_SET);
 				assert(BOTTOM_SET == (enum op_bottom)HEIGHT_SET);
 				assert(BOTTOM_SET == (enum op_bottom)MARGIN_SET);
 				assert(BOTTOM_SET == (enum op_bottom)WIDTH_SET);
+				assert(BOTTOM_SET == (enum op_bottom)DEPTH_SET);
 				assert(BOTTOM_SET == (enum op_bottom)COLUMN_WIDTH_SET);
 				assert(BOTTOM_SET == (enum op_bottom)COLUMN_GAP_SET);
 
@@ -315,8 +321,11 @@ void css__make_style_important(css_style *style)
 
 			case CSS_PROP_MAX_HEIGHT:
 			case CSS_PROP_MAX_WIDTH:
+			case CSS_PROP_MAX_DEPTH:
 				assert(MAX_HEIGHT_SET ==
 				       (enum op_max_height)MAX_WIDTH_SET);
+				assert(MAX_HEIGHT_SET ==
+				       (enum op_max_height)MAX_DEPTH_SET);
 
 				if (value == MAX_HEIGHT_SET)
 					offset += 2; /* length + units */
@@ -326,12 +335,16 @@ void css__make_style_important(css_style *style)
 			case CSS_PROP_PADDING_RIGHT:
 			case CSS_PROP_PADDING_BOTTOM:
 			case CSS_PROP_PADDING_LEFT:
+			case CSS_PROP_PADDING_FAR:
+			case CSS_PROP_PADDING_NEAR:
 			case CSS_PROP_MIN_HEIGHT:
 			case CSS_PROP_MIN_WIDTH:
+			case CSS_PROP_MIN_DEPTH:
 			case CSS_PROP_PAUSE_AFTER:
 			case CSS_PROP_PAUSE_BEFORE:
 			case CSS_PROP_TEXT_INDENT:
 				assert(MIN_HEIGHT_SET == (enum op_min_height)MIN_WIDTH_SET);
+				assert(MIN_HEIGHT_SET == (enum op_min_height)MIN_DEPTH_SET);
 				assert(MIN_HEIGHT_SET == (enum op_min_height)PADDING_SET);
 				assert(MIN_HEIGHT_SET == (enum op_min_height)PAUSE_AFTER_SET);
 				assert(MIN_HEIGHT_SET == (enum op_min_height)PAUSE_BEFORE_SET);
