@@ -1320,6 +1320,8 @@ Opcodes
 		1     => row-reverse,
 		2     => column,
 		3     => column-reverse,
+		4     => stack,
+		5     => stack-reverse,
 		other => Reserved for future expansion.
 
 77 - flex-grow
@@ -1365,5 +1367,85 @@ Opcodes
 				bits 0-6: MBZ
 			bit 7 clear => Reserved for future expansion
 				bits 0-6: MBZ
+
+7c-ff - Reserved for future expansion.
+
+w3d specific properties:
+
+100 - depth
+	<value> (14bits) :
+		bits 8-13: MBZ
+		bits 0-7 :
+			bit 7 set => length or percentage follows
+				bits 0-6: MBZ
+			bit 7 clear => keywords:
+				bits 0-6: 0000000 => auto,
+					  other   => rffe.
+
+101 - max-depth
+	<value> (14bits) :
+		bits 8-13: MBZ
+		bits 0-7 :
+			bit 7 set => length or percentage follows
+				bits 0-6: MBZ
+			bit 7 clear => keywords:
+				bits 0-6: 0000000 => none,
+					  other   => rffe.
+
+102 - min-depth
+	<value> (14bits) :
+		bits 8-13: MBZ
+		bits 0-7 :
+			bit 7: set => length or percentage follows
+					bits 0-6: MBZ
+			bit 7 clear => keywords:
+				bits 0-6: 0000000 => auto,
+					  other   => rffe.
+
+103 - far
+104 - near
+	<value> (14bits) :
+		bits 8-13: MBZ
+		bits 0-7 :
+			bit 7 set => length or percentage follows
+				bits 0-6: MBZ
+			bit 7 clear => keywords:
+				bits 0-6: 0000000 => auto,
+					  other   => rffe.
+
+105 - margin-far
+106 - margin-near
+	<value> (14bits) :
+		bits 8-13: MBZ
+		bits 0-7 :
+			bit 7 set => length or percentage follows
+				bits 0-6: MBZ
+			bit 7 clear => keywords:
+				bits 0-6: 0000000 => auto,
+					  other   => rffe.
+
+107 - padding-far
+108 - padding-near
+	<value> (14bits) :
+		bits 8-13: MBZ
+		bits 0-7 :
+			bit 7: set => length or percentage follows
+					bits 0-6: MBZ
+			       clear => Reserved for future expansion
+			       		bits 0-6: MBZ
+
+109 - overflow-z
+	<value> (14bits) :
+		0     => visible,
+		1     => hidden,
+		2     => scroll,
+		3     => auto,
+		other => Reserved for future expansion.
+
+
+
+
+
+
 
 7c-3ff - Reserved for future expansion.

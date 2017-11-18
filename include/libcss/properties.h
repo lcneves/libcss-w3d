@@ -138,6 +138,16 @@ enum css_properties_e {
 	CSS_PROP_FLEX_WRAP			= 0x079,
 	CSS_PROP_JUSTIFY_CONTENT		= 0x07a,
 	CSS_PROP_ORDER				= 0x07b,
+	CSS_PROP_DEPTH				= 0x100,
+	CSS_PROP_MAX_DEPTH			= 0x101,
+	CSS_PROP_MIN_DEPTH			= 0x102,
+	CSS_PROP_FAR				= 0x103,
+	CSS_PROP_NEAR				= 0x104,
+	CSS_PROP_MARGIN_FAR			= 0x105,
+	CSS_PROP_MARGIN_NEAR			= 0x106,
+	CSS_PROP_PADDING_FAR			= 0x107,
+	CSS_PROP_PADDING_NEAR			= 0x108,
+	CSS_PROP_OVERFLOW_Z			= 0x109,
 
 	CSS_N_PROPERTIES
 };
@@ -461,7 +471,9 @@ enum css_flex_direction_e {
 	CSS_FLEX_DIRECTION_ROW			= 0x1,
 	CSS_FLEX_DIRECTION_ROW_REVERSE		= 0x2,
 	CSS_FLEX_DIRECTION_COLUMN		= 0x3,
-	CSS_FLEX_DIRECTION_COLUMN_REVERSE	= 0x4
+	CSS_FLEX_DIRECTION_COLUMN_REVERSE	= 0x4,
+	CSS_FLEX_DIRECTION_STACK		= 0x5,
+	CSS_FLEX_DIRECTION_STACK_REVERSE	= 0x6
 };
 
 enum css_flex_grow_e {
@@ -851,6 +863,36 @@ enum css_z_index_e {
 	CSS_Z_INDEX_INHERIT			= 0x0,
 	CSS_Z_INDEX_SET				= 0x1,
 	CSS_Z_INDEX_AUTO			= 0x2
+};
+
+enum css_depth_e {
+	CSS_DEPTH_INHERIT			= 0x0,
+	CSS_DEPTH_SET				= 0x1,
+	CSS_DEPTH_AUTO				= 0x2
+};
+
+enum css_max_depth_e {
+	CSS_MAX_DEPTH_INHERIT			= 0x0,
+	CSS_MAX_DEPTH_SET			= 0x1,
+	CSS_MAX_DEPTH_NONE			= 0x2
+};
+
+enum css_min_depth_e {
+	CSS_MIN_DEPTH_INHERIT			= 0x0,
+	CSS_MIN_DEPTH_SET			= 0x1,
+	CSS_MIN_DEPTH_AUTO			= 0x2
+};
+
+enum css_far_e {
+	CSS_FAR_INHERIT				= 0x0,
+	CSS_FAR_SET				= 0x1,
+	CSS_FAR_AUTO				= 0x2
+};
+
+enum css_near_e {
+	CSS_NEAR_INHERIT			= 0x0,
+	CSS_NEAR_SET				= 0x1,
+	CSS_NEAR_AUTO				= 0x2
 };
 
 #ifdef __cplusplus

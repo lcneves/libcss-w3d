@@ -359,7 +359,9 @@ enum op_flex_direction {
 	FLEX_DIRECTION_ROW		= 0x0000,
 	FLEX_DIRECTION_ROW_REVERSE	= 0x0001,
 	FLEX_DIRECTION_COLUMN		= 0x0002,
-	FLEX_DIRECTION_COLUMN_REVERSE	= 0x0003
+	FLEX_DIRECTION_COLUMN_REVERSE	= 0x0003,
+	FLEX_DIRECTION_STACK		= 0x0004,
+	FLEX_DIRECTION_STACK_REVERSE	= 0x0005
 };
 
 enum op_flex_grow {
@@ -803,6 +805,31 @@ enum op_z_index {
 	Z_INDEX_SET			= 0x0080,
 
 	Z_INDEX_AUTO			= 0x0000
+};
+
+enum op_depth {
+	DEPTH_SET			= 0x0080,
+	DEPTH_AUTO			= 0x0000
+};
+
+enum op_max_depth {
+	MAX_DEPTH_SET			= 0x0080,
+	MAX_DEPTH_NONE			= 0x0000
+};
+
+enum op_min_depth {
+	MIN_DEPTH_SET			= 0x0080,
+	MIN_DEPTH_AUTO			= 0x0000
+};
+
+enum op_far {
+	FAR_SET				= BOTTOM_SET,
+	FAR_AUTO			= BOTTOM_AUTO
+};
+
+enum op_near {
+	NEAR_SET			= BOTTOM_SET,
+	NEAR_AUTO			= BOTTOM_AUTO
 };
 
 #endif
