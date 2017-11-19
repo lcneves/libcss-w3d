@@ -474,6 +474,45 @@ uint8_t css_computed_order(
 		const css_computed_style *style,
 		int32_t *order);
 
+uint8_t css_computed_depth(
+		const css_computed_style *style,
+		css_fixed *length, css_unit *unit);
+
+uint8_t css_computed_min_depth(
+		const css_computed_style *style,
+		css_fixed *length, css_unit *unit);
+
+uint8_t css_computed_max_depth(
+		const css_computed_style *style,
+		css_fixed *length, css_unit *unit);
+
+uint8_t css_computed_far(
+		const css_computed_style *style,
+		css_fixed *length, css_unit *unit);
+
+uint8_t css_computed_near(
+		const css_computed_style *style,
+		css_fixed *length, css_unit *unit);
+
+uint8_t css_computed_margin_far(
+		const css_computed_style *style,
+		css_fixed *length, css_unit *unit);
+
+uint8_t css_computed_margin_near(
+		const css_computed_style *style,
+		css_fixed *length, css_unit *unit);
+
+uint8_t css_computed_padding_far(
+		const css_computed_style *style,
+		css_fixed *length, css_unit *unit);
+
+uint8_t css_computed_padding_near(
+		const css_computed_style *style,
+		css_fixed *length, css_unit *unit);
+
+uint8_t css_computed_overflow_z(
+		const css_computed_style *style);
+
 #ifdef __cplusplus
 }
 #endif

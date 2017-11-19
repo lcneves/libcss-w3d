@@ -1368,11 +1368,9 @@ Opcodes
 			bit 7 clear => Reserved for future expansion
 				bits 0-6: MBZ
 
-7c-ff - Reserved for future expansion.
-
 w3d specific properties:
 
-100 - depth
+7c - depth
 	<value> (14bits) :
 		bits 8-13: MBZ
 		bits 0-7 :
@@ -1382,7 +1380,7 @@ w3d specific properties:
 				bits 0-6: 0000000 => auto,
 					  other   => rffe.
 
-101 - max-depth
+7d - max-depth
 	<value> (14bits) :
 		bits 8-13: MBZ
 		bits 0-7 :
@@ -1392,7 +1390,7 @@ w3d specific properties:
 				bits 0-6: 0000000 => none,
 					  other   => rffe.
 
-102 - min-depth
+7e - min-depth
 	<value> (14bits) :
 		bits 8-13: MBZ
 		bits 0-7 :
@@ -1402,8 +1400,8 @@ w3d specific properties:
 				bits 0-6: 0000000 => auto,
 					  other   => rffe.
 
-103 - far
-104 - near
+7f - far
+80 - near
 	<value> (14bits) :
 		bits 8-13: MBZ
 		bits 0-7 :
@@ -1413,8 +1411,8 @@ w3d specific properties:
 				bits 0-6: 0000000 => auto,
 					  other   => rffe.
 
-105 - margin-far
-106 - margin-near
+81 - margin-far
+82 - margin-near
 	<value> (14bits) :
 		bits 8-13: MBZ
 		bits 0-7 :
@@ -1424,8 +1422,8 @@ w3d specific properties:
 				bits 0-6: 0000000 => auto,
 					  other   => rffe.
 
-107 - padding-far
-108 - padding-near
+83 - padding-far
+84 - padding-near
 	<value> (14bits) :
 		bits 8-13: MBZ
 		bits 0-7 :
@@ -1434,7 +1432,7 @@ w3d specific properties:
 			       clear => Reserved for future expansion
 			       		bits 0-6: MBZ
 
-109 - overflow-z
+85 - overflow-z
 	<value> (14bits) :
 		0     => visible,
 		1     => hidden,
@@ -1448,4 +1446,4 @@ w3d specific properties:
 
 
 
-7c-3ff - Reserved for future expansion.
+86-3ff - Reserved for future expansion.

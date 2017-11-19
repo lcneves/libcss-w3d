@@ -110,7 +110,18 @@ style = {
         'blank entry.'),
     ('quotes', 1, 'string_arr', None, None,
         'Encode quotes as an array of string objects, terminated with a '
-        'blank entry.')
+        'blank entry.'),
+    # Style group, w3d properties
+    ('depth', 2, 'length', 'CSS_DEPTH_SET'),
+    ('max_depth', 2, 'length', 'CSS_MAX_DEPTH_SET'),
+    ('min_depth', 2, 'length', 'CSS_MIN_DEPTH_SET'),
+    ('far', 2, 'length', 'CSS_FAR_SET', None, None, 'get'),
+    ('near', 2, 'length', 'CSS_NEAR_SET', None, None, 'get'),
+    ('margin_far', 2, 'length', 'CSS_MARGIN_SET'),
+    ('margin_near', 2, 'length', 'CSS_MARGIN_SET'),
+    ('padding_far', 1, 'length', 'CSS_PADDING_SET'),
+    ('padding_near', 1, 'length', 'CSS_PADDING_SET'),
+    ('overflow_z', 3)
 }
 
 page = {

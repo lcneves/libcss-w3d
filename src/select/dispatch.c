@@ -637,5 +637,55 @@ struct prop_table prop_dispatch[CSS_N_PROPERTIES] = {
 		PROPERTY_FUNCS(order),
 		0,
 		GROUP_NORMAL
+	},
+	{
+		PROPERTY_FUNCS(depth),
+		0,
+		GROUP_NORMAL
+	},
+	{
+		PROPERTY_FUNCS(max_depth),
+		0,
+		GROUP_NORMAL
+	},
+	{
+		PROPERTY_FUNCS(min_depth),
+		0,
+		GROUP_NORMAL
+	},
+	{
+		PROPERTY_FUNCS(far),
+		0,
+		GROUP_NORMAL
+	},
+	{
+		PROPERTY_FUNCS(near),
+		0,
+		GROUP_NORMAL
+	},
+	{
+		PROPERTY_FUNCS(margin_far),
+		0,
+		GROUP_NORMAL
+	},
+	{
+		PROPERTY_FUNCS(margin_near),
+		0,
+		GROUP_NORMAL
+	},
+	{
+		PROPERTY_FUNCS(padding_far),
+		0,
+		GROUP_NORMAL
+	},
+	{
+		PROPERTY_FUNCS(padding_near),
+		0,
+		GROUP_NORMAL
+	},
+	{
+		PROPERTY_FUNCS(overflow_z),
+		0,
+		GROUP_NORMAL
 	}
 };

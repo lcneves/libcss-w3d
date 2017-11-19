@@ -35,6 +35,12 @@ css_error css__cascade_flex_direction(uint32_t opv, css_style *style,
 		case FLEX_DIRECTION_COLUMN_REVERSE:
 			value = CSS_FLEX_DIRECTION_COLUMN_REVERSE;
 			break;
+		case FLEX_DIRECTION_STACK:
+			value = CSS_FLEX_DIRECTION_STACK;
+			break;
+		case FLEX_DIRECTION_STACK_REVERSE:
+			value = CSS_FLEX_DIRECTION_STACK_REVERSE;
+			break;
 		}
 	}
 

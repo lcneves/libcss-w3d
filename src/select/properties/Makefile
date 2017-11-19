@@ -123,6 +123,16 @@ widows.c \
 width.c \
 word_spacing.c \
 writing_mode.c \
-z_index.c
+z_index.c \
+depth.c \
+max_depth.c \
+min_depth.c \
+far.c \
+near.c \
+margin_far.c \
+margin_near.c \
+padding_far.c \
+padding_near.c \
+overflow_z.c
 
 include $(NSBUILD)/Makefile.subdir

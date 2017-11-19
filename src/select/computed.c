@@ -1136,6 +1136,129 @@ uint8_t css_computed_order(const css_computed_style *style,
 	return get_order(style, order);
 }
 
+uint8_t css_computed_depth(const css_computed_style *style,
+		css_fixed *length, css_unit *unit)
+{
+	return get_depth(style, length, unit);
+}
+
+uint8_t css_computed_max_depth(const css_computed_style *style,
+		css_fixed *length, css_unit *unit)
+{
+	return get_max_depth(style, length, unit);
+}
+
+uint8_t css_computed_min_depth(const css_computed_style *style,
+		css_fixed *length, css_unit *unit)
+{
+	uint8_t min_depth = get_min_depth(style, length, unit);
+
+	if (min_depth == CSS_MIN_DEPTH_AUTO) {
+		uint8_t display = get_display(style);
+
+		if (display != CSS_DISPLAY_FLEX &&
+				display != CSS_DISPLAY_INLINE_FLEX) {
+			min_depth = CSS_MIN_DEPTH_SET;
+			*length = 0;
+			*unit = CSS_UNIT_PX;
+		}
+	}
+
+	return min_depth;
+}
+
+uint8_t css_computed_far(const css_computed_style *style,
+		css_fixed *length, css_unit *unit)
+{
+	uint8_t position = css_computed_position(style);
+	uint8_t far = get_far(style, length, unit);
+
+	/* Fix up, based on computed position */
+	if (position == CSS_POSITION_STATIC) {
+		/* Static -> auto */
+		far = CSS_FAR_AUTO;
+	} else if (position == CSS_POSITION_RELATIVE) {
+		/* Relative -> follow $9.4.3 */
+		uint8_t near = get_near_bits(style);
+
+		if (far == CSS_FAR_AUTO && (near & 0x3) == CSS_NEAR_AUTO) {
+			/* Both auto => 0px */
+			*length = 0;
+			*unit = CSS_UNIT_PX;
+		} else if (far == CSS_FAR_AUTO) {
+			/* Far is auto => -near */
+			*length = -style->i.near;
+			*unit = (css_unit) (near >> 2);
+		}
+
+		far = CSS_FAR_SET;
+	}
+
+	return far;
+}
+
+uint8_t css_computed_near(const css_computed_style *style,
+		css_fixed *length, css_unit *unit)
+{
+	uint8_t position = css_computed_position(style);
+	uint8_t near = get_near(style, length, unit);
+
+	/* Fix up, based on computed position */
+	if (position == CSS_POSITION_STATIC) {
+		/* Static -> auto */
+		near = CSS_NEAR_AUTO;
+	} else if (position == CSS_POSITION_RELATIVE) {
+		/* Relative -> follow $9.4.3 */
+		uint8_t far = get_far_bits(style);
+
+		if (near == CSS_NEAR_AUTO && (far & 0x3) == CSS_FAR_AUTO) {
+			/* Both auto => 0px */
+			*length = 0;
+			*unit = CSS_UNIT_PX;
+		} else if (near == CSS_NEAR_AUTO ||
+				(far & 0x3) != CSS_FAR_AUTO) {
+			/* Near is auto or far is not auto => -far */
+			*length = -style->i.far;
+			*unit = (css_unit) (far >> 2);
+		}
+
+		near = CSS_NEAR_SET;
+	}
+
+	return near;
+}
+
+uint8_t css_computed_margin_far(const css_computed_style *style,
+		css_fixed *length, css_unit *unit)
+{
+	return get_margin_far(style, length, unit);
+}
+
+uint8_t css_computed_margin_near(const css_computed_style *style,
+		css_fixed *length, css_unit *unit)
+{
+	return get_margin_near(style, length, unit);
+}
+
+uint8_t css_computed_padding_far(const css_computed_style *style,
+		css_fixed *length, css_unit *unit)
+{
+	return get_padding_far(style, length, unit);
+}
+
+uint8_t css_computed_padding_near(const css_computed_style *style,
+		css_fixed *length, css_unit *unit)
+{
+	return get_padding_near(style, length, unit);
+}
+
+uint8_t css_computed_overflow_z(const css_computed_style *style)
+{
+	return get_overflow_z(style);
+}
+
+
+
 /******************************************************************************
  * Library internals                                                          *
  ******************************************************************************/
@@ -1264,6 +1387,18 @@ css_error css__compute_absolute_values(const css_computed_style *parent,
 	if (error != CSS_OK)
 		return error;
 
+	/* Fix up max-depth */
+	error = compute_absolute_length(style, &ex_size.data.length,
+			get_max_depth, set_max_depth);
+	if (error != CSS_OK)
+		return error;
+
+	/* Fix up min-depth */
+	error = compute_absolute_length(style, &ex_size.data.length,
+			get_min_depth, set_min_depth);
+	if (error != CSS_OK)
+		return error;
+
 	/* Fix up padding */
 	error = compute_absolute_padding(style, &ex_size.data.length);
 	if (error != CSS_OK)
@@ -1283,6 +1418,12 @@ css_error css__compute_absolute_values(const css_computed_style *parent,
 	/* Fix up width */
 	error = compute_absolute_length(style, &ex_size.data.length,
 			get_width, set_width);
+	if (error != CSS_OK)
+		return error;
+
+	/* Fix up depth */
+	error = compute_absolute_length(style, &ex_size.data.length,
+			get_depth, set_depth);
 	if (error != CSS_OK)
 		return error;
 
@@ -1609,7 +1750,7 @@ css_error compute_absolute_line_height(css_computed_style *style,
 }
 
 /**
- * Compute the absolute values of {top,right,bottom,left}
+ * Compute the absolute values of {top,right,bottom,left,far,near}
  *
  * \param style      Style to process
  * \param ex_size    Ex size, in ems
@@ -1638,6 +1779,16 @@ css_error compute_absolute_sides(css_computed_style *style,
 
 	error = compute_absolute_length(style, ex_size,
 			get_left, set_left);
+	if (error != CSS_OK)
+		return error;
+
+	error = compute_absolute_length(style, ex_size,
+			get_far, set_far);
+	if (error != CSS_OK)
+		return error;
+
+	error = compute_absolute_length(style, ex_size,
+			get_near, set_near);
 	if (error != CSS_OK)
 		return error;
 
@@ -1676,6 +1827,16 @@ css_error compute_absolute_margins(css_computed_style *style,
 	if (error != CSS_OK)
 		return error;
 
+	error = compute_absolute_length(style, ex_size,
+			get_margin_far, set_margin_far);
+	if (error != CSS_OK)
+		return error;
+
+	error = compute_absolute_length(style, ex_size,
+			get_margin_near, set_margin_near);
+	if (error != CSS_OK)
+		return error;
+
 	return CSS_OK;
 }
 
@@ -1708,6 +1869,16 @@ css_error compute_absolute_padding(css_computed_style *style,
 
 	error = compute_absolute_length(style, ex_size,
 			get_padding_left, set_padding_left);
+	if (error != CSS_OK)
+		return error;
+
+	error = compute_absolute_length(style, ex_size,
+			get_padding_far, set_padding_far);
+	if (error != CSS_OK)
+		return error;
+
+	error = compute_absolute_length(style, ex_size,
+			get_padding_near, set_padding_near);
 	if (error != CSS_OK)
 		return error;
 

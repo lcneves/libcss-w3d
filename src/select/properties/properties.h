@@ -145,6 +145,16 @@ PROPERTY_FUNCS(width);
 PROPERTY_FUNCS(word_spacing);
 PROPERTY_FUNCS(writing_mode);
 PROPERTY_FUNCS(z_index);
+PROPERTY_FUNCS(depth);
+PROPERTY_FUNCS(max_depth);
+PROPERTY_FUNCS(min_depth);
+PROPERTY_FUNCS(far);
+PROPERTY_FUNCS(near);
+PROPERTY_FUNCS(margin_far);
+PROPERTY_FUNCS(margin_near);
+PROPERTY_FUNCS(padding_far);
+PROPERTY_FUNCS(padding_near);
+PROPERTY_FUNCS(overflow_z);
 
 #undef PROPERTY_FUNCS
 
