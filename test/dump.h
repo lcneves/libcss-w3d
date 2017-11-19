@@ -1854,6 +1854,12 @@ void dump_bytecode(css_style *style, char **ptr, uint32_t depth)
 				case FLEX_DIRECTION_COLUMN_REVERSE:
 					*ptr += sprintf(*ptr, "column-reverse");
 					break;
+				case FLEX_DIRECTION_STACK:
+					*ptr += sprintf(*ptr, "stack");
+					break;
+				case FLEX_DIRECTION_STACK_REVERSE:
+					*ptr += sprintf(*ptr, "stack-reverse");
+					break;
 				}
 				break;
 			case CSS_PROP_FLEX_GROW:

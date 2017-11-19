@@ -1686,6 +1686,12 @@ static void dump_computed_style(const css_computed_style *style, char *buf,
 	case CSS_FLEX_DIRECTION_COLUMN_REVERSE:
 		wrote = snprintf(ptr, *len, "flex-direction: column-reverse\n");
 		break;
+	case CSS_FLEX_DIRECTION_STACK:
+		wrote = snprintf(ptr, *len, "flex-direction: stack\n");
+		break;
+	case CSS_FLEX_DIRECTION_STACK_REVERSE:
+		wrote = snprintf(ptr, *len, "flex-direction: stack-reverse\n");
+		break;
 	default:
 		wrote = 0;
 		break;
@@ -3183,5 +3189,275 @@ static void dump_computed_style(const css_computed_style *style, char *buf,
 	}
 	ptr += wrote;
 	*len -= wrote;
+
+	/* depth */
+	val = css_computed_depth(style, &len1, &unit1);
+	switch (val) {
+	case CSS_DEPTH_INHERIT:
+		wrote = snprintf(ptr, *len, "depth: inherit\n");
+		break;
+	case CSS_DEPTH_AUTO:
+		wrote = snprintf(ptr, *len, "depth: auto\n");
+		break;
+	case CSS_DEPTH_SET:
+		wrote = snprintf(ptr, *len, "depth: ");
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = dump_css_unit(len1, unit1, ptr, *len);
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = snprintf(ptr, *len, "\n");
+		break;
+	default:
+		wrote = 0;
+		break;
+	}
+	ptr += wrote;
+	*len -= wrote;
+
+	/* min-depth */
+	val = css_computed_min_depth(style, &len1, &unit1);
+	switch (val) {
+	case CSS_MIN_DEPTH_INHERIT:
+		wrote = snprintf(ptr, *len, "min-depth: inherit\n");
+		break;
+	case CSS_MIN_DEPTH_AUTO:
+		wrote = snprintf(ptr, *len, "min-depth: auto\n");
+		break;
+	case CSS_MIN_DEPTH_SET:
+		wrote = snprintf(ptr, *len, "min-depth: ");
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = dump_css_unit(len1, unit1, ptr, *len);
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = snprintf(ptr, *len, "\n");
+		break;
+	default:
+		wrote = 0;
+		break;
+	}
+	ptr += wrote;
+	*len -= wrote;
+
+	/* max-depth */
+	val = css_computed_max_depth(style, &len1, &unit1);
+	switch (val) {
+	case CSS_MAX_DEPTH_INHERIT:
+		wrote = snprintf(ptr, *len, "max-depth: inherit\n");
+		break;
+	case CSS_MAX_DEPTH_NONE:
+		wrote = snprintf(ptr, *len, "max-depth: none\n");
+		break;
+	case CSS_MAX_DEPTH_SET:
+		wrote = snprintf(ptr, *len, "max-depth: ");
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = dump_css_unit(len1, unit1, ptr, *len);
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = snprintf(ptr, *len, "\n");
+		break;
+	default:
+		wrote = 0;
+		break;
+	}
+	ptr += wrote;
+	*len -= wrote;
+
+	/* far */
+	val = css_computed_far(style, &len1, &unit1);
+	switch (val) {
+	case CSS_FAR_INHERIT:
+		wrote = snprintf(ptr, *len, "far: inherit\n");
+		break;
+	case CSS_FAR_AUTO:
+		wrote = snprintf(ptr, *len, "far: auto\n");
+		break;
+	case CSS_FAR_SET:
+		wrote = snprintf(ptr, *len, "far: ");
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = dump_css_unit(len1, unit1, ptr, *len);
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = snprintf(ptr, *len, "\n");
+		break;
+	default:
+		wrote = 0;
+		break;
+	}
+	ptr += wrote;
+	*len -= wrote;
+
+	/* near */
+	val = css_computed_near(style, &len1, &unit1);
+	switch (val) {
+	case CSS_NEAR_INHERIT:
+		wrote = snprintf(ptr, *len, "near: inherit\n");
+		break;
+	case CSS_NEAR_AUTO:
+		wrote = snprintf(ptr, *len, "near: auto\n");
+		break;
+	case CSS_NEAR_SET:
+		wrote = snprintf(ptr, *len, "near: ");
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = dump_css_unit(len1, unit1, ptr, *len);
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = snprintf(ptr, *len, "\n");
+		break;
+	default:
+		wrote = 0;
+		break;
+	}
+	ptr += wrote;
+	*len -= wrote;
+
+	/* margin-far */
+	val = css_computed_margin_far(style, &len1, &unit1);
+	switch (val) {
+	case CSS_MARGIN_INHERIT:
+		wrote = snprintf(ptr, *len, "margin-far: inherit\n");
+		break;
+	case CSS_MARGIN_AUTO:
+		wrote = snprintf(ptr, *len, "margin-far: auto\n");
+		break;
+	case CSS_MARGIN_SET:
+		wrote = snprintf(ptr, *len, "margin-far: ");
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = dump_css_unit(len1, unit1, ptr, *len);
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = snprintf(ptr, *len, "\n");
+		break;
+	default:
+		wrote = 0;
+		break;
+	}
+	ptr += wrote;
+	*len -= wrote;
+
+	/* margin-near */
+	val = css_computed_margin_near(style, &len1, &unit1);
+	switch (val) {
+	case CSS_MARGIN_INHERIT:
+		wrote = snprintf(ptr, *len, "margin-near: inherit\n");
+		break;
+	case CSS_MARGIN_AUTO:
+		wrote = snprintf(ptr, *len, "margin-near: auto\n");
+		break;
+	case CSS_MARGIN_SET:
+		wrote = snprintf(ptr, *len, "margin-near: ");
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = dump_css_unit(len1, unit1, ptr, *len);
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = snprintf(ptr, *len, "\n");
+		break;
+	default:
+		wrote = 0;
+		break;
+	}
+	ptr += wrote;
+	*len -= wrote;
+
+	/* padding-far */
+	val = css_computed_padding_far(style, &len1, &unit1);
+	switch (val) {
+	case CSS_PADDING_INHERIT:
+		wrote = snprintf(ptr, *len, "padding-far: inherit\n");
+		break;
+	case CSS_PADDING_SET:
+		wrote = snprintf(ptr, *len, "padding-far: ");
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = dump_css_unit(len1, unit1, ptr, *len);
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = snprintf(ptr, *len, "\n");
+		break;
+	default:
+		wrote = 0;
+		break;
+	}
+	ptr += wrote;
+	*len -= wrote;
+
+	/* padding-near */
+	val = css_computed_padding_near(style, &len1, &unit1);
+	switch (val) {
+	case CSS_PADDING_INHERIT:
+		wrote = snprintf(ptr, *len, "padding-near: inherit\n");
+		break;
+	case CSS_PADDING_SET:
+		wrote = snprintf(ptr, *len, "padding-near: ");
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = dump_css_unit(len1, unit1, ptr, *len);
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = snprintf(ptr, *len, "\n");
+		break;
+	default:
+		wrote = 0;
+		break;
+	}
+	ptr += wrote;
+	*len -= wrote;
+
+	/* overflow-z */
+	val = css_computed_overflow_z(style);
+	switch (val) {
+	case CSS_OVERFLOW_INHERIT:
+		wrote = snprintf(ptr, *len, "overflow-z: inherit\n");
+		break;
+	case CSS_OVERFLOW_VISIBLE:
+		wrote = snprintf(ptr, *len, "overflow-z: visible\n");
+		break;
+	case CSS_OVERFLOW_HIDDEN:
+		wrote = snprintf(ptr, *len, "overflow-z: hidden\n");
+		break;
+	case CSS_OVERFLOW_SCROLL:
+		wrote = snprintf(ptr, *len, "overflow-z: scroll\n");
+		break;
+	case CSS_OVERFLOW_AUTO:
+		wrote = snprintf(ptr, *len, "overflow-z: auto\n");
+		break;
+	default:
+		wrote = 0;
+		break;
+	}
+	ptr += wrote;
+	*len -= wrote;
+
+
+
+
+
+
 }
+
+
 
