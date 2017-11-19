@@ -1,11 +1,31 @@
-LibCSS -- a CSS parser and selection engine
+LibCSS-w3d -- a CSS parser and selection engine for the w3d framework
 ===========================================
 
 Overview
 --------
 
+  This is a fork of NetSurf's LibCSS that adds support to w3d properties.
+
   LibCSS is a CSS parser and selection engine. It aims to parse the forward
   compatible CSS grammar.
+
+  The following properties have been added:
+
+    + depth
+    + max-depth
+    + min-depth
+    + far
+    + near
+    + margin-far
+    + margin-near
+    + padding-far
+    + padding-near
+    + overflow-z
+
+  The following values have been added to the flex-direction property:
+
+    + stack
+    + stack-reverse
 
 Requirements
 ------------
