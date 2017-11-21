@@ -7,6 +7,8 @@
 |  margin-right: 0px
 |  margin-bottom: 0px
 |  margin-left: 0px
+|  margin-far: 0px
+|  margin-near: 0px
 #reset
 
 #data
@@ -18,6 +20,8 @@
 |  margin-right: 2em
 |  margin-bottom: 2em
 |  margin-left: 2em
+|  margin-far: 0px
+|  margin-near: 0px
 #reset
 
 #data
@@ -29,6 +33,8 @@
 |  margin-right: auto
 |  margin-bottom: 2em
 |  margin-left: auto
+|  margin-far: 0px
+|  margin-near: 0px
 #reset
 
 #data
@@ -40,6 +46,8 @@
 |  margin-right: 5px
 |  margin-bottom: -4em
 |  margin-left: -50%
+|  margin-far: 0px
+|  margin-near: 0px
 #reset
 
 #data
@@ -51,6 +59,8 @@
 |  margin-right: 5px
 |  margin-bottom: -4em
 |  margin-left: 5px
+|  margin-far: 0px
+|  margin-near: 0px
 #reset
 
 #data
@@ -69,6 +79,8 @@
 |  margin-right: auto
 |  margin-bottom: auto
 |  margin-left: auto
+|  margin-far: 0px
+|  margin-near: 0px
 #reset
 
 #data
@@ -80,6 +92,8 @@
 |  margin-right: auto
 |  margin-bottom: auto
 |  margin-left: auto
+|  margin-far: 0px
+|  margin-near: 0px
 #reset
 
 #data
@@ -116,6 +130,8 @@
 |  margin-right: auto
 |  margin-bottom: 0px
 |  margin-left: auto
+|  margin-far: 0px
+|  margin-near: 0px
 #reset
 
 #data
@@ -127,6 +143,8 @@
 |  margin-right: auto
 |  margin-bottom: 10px
 |  margin-left: 0px
+|  margin-far: 0px
+|  margin-near: 0px
 #reset
 
 
@@ -139,6 +157,8 @@
 |  margin-right: auto !important
 |  margin-bottom: auto !important
 |  margin-left: auto !important
+|  margin-far: 0px !important
+|  margin-near: 0px !important
 #reset
 
 #data
@@ -150,6 +170,8 @@
 |  margin-right: auto !important
 |  margin-bottom: auto !important
 |  margin-left: auto !important
+|  margin-far: 0px !important
+|  margin-near: 0px !important
 #reset
 
 #data
@@ -179,6 +201,8 @@
 |  margin-right: auto !important
 |  margin-bottom: 0px !important
 |  margin-left: auto !important
+|  margin-far: 0px !important
+|  margin-near: 0px !important
 #reset
 
 #data
@@ -190,6 +214,8 @@
 |  margin-right: auto !important
 |  margin-bottom: 10px !important
 |  margin-left: 0px !important
+|  margin-far: 0px !important
+|  margin-near: 0px !important
 #reset
 
 #data
@@ -311,4 +337,123 @@
 |  margin-left: inherit
 #reset
 
+#data
+* { margin: auto auto auto auto auto; }
+#errors
+#expected
+| *
+|  margin-top: auto
+|  margin-right: auto
+|  margin-bottom: auto
+|  margin-left: auto
+|  margin-far: auto
+|  margin-near: auto
+#reset
+
+#data
+* { margin: auto auto auto auto auto auto; }
+#errors
+#expected
+| *
+|  margin-top: auto
+|  margin-right: auto
+|  margin-bottom: auto
+|  margin-left: auto
+|  margin-far: auto
+|  margin-near: auto
+#reset
+
+#data
+* { margin: auto auto auto auto auto !important; }
+#errors
+#expected
+| *
+|  margin-top: auto !important
+|  margin-right: auto !important
+|  margin-bottom: auto !important
+|  margin-left: auto !important
+|  margin-far: auto !important
+|  margin-near: auto !important
+#reset
+
+#data
+* { margin: auto auto auto auto auto auto !important; }
+#errors
+#expected
+| *
+|  margin-top: auto !important
+|  margin-right: auto !important
+|  margin-bottom: auto !important
+|  margin-left: auto !important
+|  margin-far: auto !important
+|  margin-near: auto !important
+#reset
+
+#data
+* { margin: auto auto auto auto 5rem; }
+#errors
+#expected
+| *
+|  margin-top: auto
+|  margin-right: auto
+|  margin-bottom: auto
+|  margin-left: auto
+|  margin-far: 5rem
+|  margin-near: 5rem
+#reset
+
+#data
+* { margin: auto auto auto auto 10px auto; }
+#errors
+#expected
+| *
+|  margin-top: auto
+|  margin-right: auto
+|  margin-bottom: auto
+|  margin-left: auto
+|  margin-far: 10px
+|  margin-near: auto
+#reset
+
+#data
+* { margin: 1px 2px 3px 4px 5px; }
+#errors
+#expected
+| *
+|  margin-top: 1px
+|  margin-right: 2px
+|  margin-bottom: 3px
+|  margin-left: 4px
+|  margin-far: 5px
+|  margin-near: 5px
+#reset
+
+#data
+* { margin: 1px 2px 3px 4px 5px 6px; }
+#errors
+#expected
+| *
+|  margin-top: 1px
+|  margin-right: 2px
+|  margin-bottom: 3px
+|  margin-left: 4px
+|  margin-far: 5px
+|  margin-near: 6px
+#reset
+
+#data
+* { margin-far: 70vh; }
+#errors
+#expected
+| *
+|  margin-far: 70vh
+#reset
+
+#data
+* { margin-near: 30vw; }
+#errors
+#expected
+| *
+|  margin-near: 30vw
+#reset
 

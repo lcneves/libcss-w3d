@@ -7,6 +7,8 @@
 |  padding-right: 10px
 |  padding-bottom: 10px
 |  padding-left: 10px
+|  padding-far: 0px
+|  padding-near: 0px
 #reset
 
 #data
@@ -18,6 +20,8 @@
 |  padding-right: 20px
 |  padding-bottom: 10px
 |  padding-left: 20px
+|  padding-far: 0px
+|  padding-near: 0px
 #reset
 
 #data
@@ -29,6 +33,8 @@
 |  padding-right: 20px
 |  padding-bottom: 30px
 |  padding-left: 20px
+|  padding-far: 0px
+|  padding-near: 0px
 #reset
 
 #data
@@ -40,6 +46,8 @@
 |  padding-right: 20px
 |  padding-bottom: 30px
 |  padding-left: 40px
+|  padding-far: 0px
+|  padding-near: 0px
 #reset
 
 #data
@@ -77,6 +85,8 @@
 |  padding-right: 10px !important
 |  padding-bottom: 10px !important
 |  padding-left: 10px !important
+|  padding-far: 0px !important
+|  padding-near: 0px !important
 #reset
 
 #data
@@ -88,6 +98,8 @@
 |  padding-right: 20px !important
 |  padding-bottom: 10px !important
 |  padding-left: 20px !important
+|  padding-far: 0px !important
+|  padding-near: 0px !important
 #reset
 
 #data
@@ -99,6 +111,8 @@
 |  padding-right: 20px !important
 |  padding-bottom: 30px !important
 |  padding-left: 20px !important
+|  padding-far: 0px !important
+|  padding-near: 0px !important
 #reset
 
 #data
@@ -110,6 +124,8 @@
 |  padding-right: 20px !important
 |  padding-bottom: 30px !important
 |  padding-left: 40px !important
+|  padding-far: 0px !important
+|  padding-near: 0px !important
 #reset
 
 #data
@@ -249,4 +265,45 @@
 |  padding-left: inherit
 #reset
 
+#data
+* { padding: 10px 20px 30px 40px 50px; }
+#errors
+#expected
+| *
+|  padding-top: 10px
+|  padding-right: 20px
+|  padding-bottom: 30px
+|  padding-left: 40px
+|  padding-far: 50px
+|  padding-near: 50px
+#reset
+
+#data
+* { padding: 10px 20px 30px 40px 50px 60px; }
+#errors
+#expected
+| *
+|  padding-top: 10px
+|  padding-right: 20px
+|  padding-bottom: 30px
+|  padding-left: 40px
+|  padding-far: 50px
+|  padding-near: 60px
+#reset
+
+#data
+* { padding-far: 70vh; }
+#errors
+#expected
+| *
+|  padding-far: 70vh
+#reset
+
+#data
+* { padding-near: 30vw; }
+#errors
+#expected
+| *
+|  padding-near: 30vw
+#reset
 

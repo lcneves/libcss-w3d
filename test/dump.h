@@ -489,6 +489,16 @@ static const char *opcode_names[] = {
 	"flex-wrap",
 	"justify-content",
 	"order",
+	"depth",
+	"max-depth",
+	"min-depth",
+	"far",
+	"near",
+	"margin-far",
+	"margin-near",
+	"padding-far",
+	"padding-near",
+	"overflow-z"
 };
 
 static void dump_css_fixed(css_fixed f, char **ptr)
@@ -1247,12 +1257,17 @@ void dump_bytecode(css_style *style, char **ptr, uint32_t depth)
 			case CSS_PROP_MARGIN_RIGHT:
 			case CSS_PROP_MARGIN_BOTTOM:
 			case CSS_PROP_MARGIN_LEFT:
+			case CSS_PROP_MARGIN_FAR:
+			case CSS_PROP_MARGIN_NEAR:
 			case CSS_PROP_BOTTOM:
 			case CSS_PROP_LEFT:
 			case CSS_PROP_RIGHT:
 			case CSS_PROP_TOP:
+			case CSS_PROP_FAR:
+			case CSS_PROP_NEAR:
 			case CSS_PROP_HEIGHT:
 			case CSS_PROP_WIDTH:
+			case CSS_PROP_DEPTH:
 			case CSS_PROP_COLUMN_WIDTH:
 				assert(BOTTOM_SET ==
 						(enum op_bottom) LEFT_SET);
@@ -1267,6 +1282,14 @@ void dump_bytecode(css_style *style, char **ptr, uint32_t depth)
 				assert(BOTTOM_AUTO ==
 						(enum op_bottom) TOP_AUTO);
 				assert(BOTTOM_SET ==
+						(enum op_bottom) FAR_SET);
+				assert(BOTTOM_AUTO ==
+						(enum op_bottom) FAR_AUTO);
+				assert(BOTTOM_SET ==
+						(enum op_bottom) NEAR_SET);
+				assert(BOTTOM_AUTO ==
+						(enum op_bottom) NEAR_AUTO);
+				assert(BOTTOM_SET ==
 						(enum op_bottom) HEIGHT_SET);
 				assert(BOTTOM_AUTO ==
 						(enum op_bottom) HEIGHT_AUTO);
@@ -1278,6 +1301,10 @@ void dump_bytecode(css_style *style, char **ptr, uint32_t depth)
 						(enum op_bottom) WIDTH_SET);
 				assert(BOTTOM_AUTO ==
 						(enum op_bottom) WIDTH_AUTO);
+				assert(BOTTOM_SET ==
+						(enum op_bottom) DEPTH_SET);
+				assert(BOTTOM_AUTO ==
+						(enum op_bottom) DEPTH_AUTO);
 				assert(BOTTOM_SET ==
 						(enum op_bottom)
 							COLUMN_WIDTH_SET);
@@ -2189,12 +2216,19 @@ void dump_bytecode(css_style *style, char **ptr, uint32_t depth)
 				break;
 			case CSS_PROP_MAX_HEIGHT:
 			case CSS_PROP_MAX_WIDTH:
+			case CSS_PROP_MAX_DEPTH:
 				assert(MAX_HEIGHT_SET ==
 						(enum op_max_height)
 						MAX_WIDTH_SET);
 				assert(MAX_HEIGHT_NONE ==
 						(enum op_max_height)
 						MAX_WIDTH_NONE);
+				assert(MAX_HEIGHT_SET ==
+						(enum op_max_height)
+						MAX_DEPTH_SET);
+				assert(MAX_HEIGHT_NONE ==
+						(enum op_max_height)
+						MAX_DEPTH_NONE);
 
 				switch (value) {
 				case MAX_HEIGHT_SET:
@@ -2214,12 +2248,19 @@ void dump_bytecode(css_style *style, char **ptr, uint32_t depth)
 				break;
 			case CSS_PROP_MIN_HEIGHT:
 			case CSS_PROP_MIN_WIDTH:
+			case CSS_PROP_MIN_DEPTH:
 				assert(MIN_HEIGHT_SET ==
 						(enum op_min_height)
 						MIN_WIDTH_SET);
 				assert(MIN_HEIGHT_AUTO ==
 						(enum op_min_height)
 						MIN_WIDTH_AUTO);
+				assert(MIN_HEIGHT_SET ==
+						(enum op_min_height)
+						MIN_DEPTH_SET);
+				assert(MIN_HEIGHT_AUTO ==
+						(enum op_min_height)
+						MIN_DEPTH_AUTO);
 
 				switch (value) {
 				case MIN_HEIGHT_SET:
@@ -2263,6 +2304,8 @@ void dump_bytecode(css_style *style, char **ptr, uint32_t depth)
 			case CSS_PROP_PADDING_RIGHT:
 			case CSS_PROP_PADDING_BOTTOM:
 			case CSS_PROP_PADDING_LEFT:
+			case CSS_PROP_PADDING_FAR:
+			case CSS_PROP_PADDING_NEAR:
 			case CSS_PROP_PAUSE_AFTER:
 			case CSS_PROP_PAUSE_BEFORE:
 			case CSS_PROP_TEXT_INDENT:
@@ -2340,6 +2383,7 @@ void dump_bytecode(css_style *style, char **ptr, uint32_t depth)
 				break;
 			case CSS_PROP_OVERFLOW_X:
 			case CSS_PROP_OVERFLOW_Y:
+			case CSS_PROP_OVERFLOW_Z:
 				switch (value) {
 				case OVERFLOW_VISIBLE:
 					*ptr += sprintf(*ptr, "visible");

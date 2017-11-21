@@ -162,6 +162,8 @@ void css__make_style_important(css_style *style)
 			case CSS_PROP_LEFT:
 			case CSS_PROP_RIGHT:
 			case CSS_PROP_TOP:
+			case CSS_PROP_FAR:
+			case CSS_PROP_NEAR:
 			case CSS_PROP_HEIGHT:
 			case CSS_PROP_WIDTH:
 			case CSS_PROP_DEPTH:
